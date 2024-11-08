@@ -3,7 +3,7 @@ const db = require('../../database/db_conn'); // Aquí conectarías a tu base de
 const crypto = require('crypto');
 const sendVerificationEmail = require('../../utils/sendEmail'); // Función para enviar email
 
-exports.registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
    const { email, nombre } = req.body;
    
    try {
@@ -31,3 +31,5 @@ exports.registerUser = async (req, res) => {
       res.status(500).json({ message: 'Error interno del servidor.' });
    }
 };
+
+module.exports = registerUser;

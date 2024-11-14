@@ -17,7 +17,19 @@ const sendVerificationEmail = async (email, code, nombre) => {
       from: process.env.GMAIL_USER,
       to: email,
       subject: 'Código de verificación',
-      text: `Hola ${nombre},\n\nUtiliza el siguiente codigo para activar tu usuario e iniciar sesion:\n\n${code}`
+      html: `
+      <html>
+      <body>
+        <h1 style="color: #4CAF50;">¡Hola, ${nombre}!</h1>
+        <p>Gracias por registrarte. Usa el siguiente código para activar tu cuenta:</p>
+        <h2 style="color: #000;">${code}</h2>
+        <p>Este código expirará en 10 minutos.</p>
+        <br>
+        <p>Saludos,</p>
+        <p>El equipo de soporte</p>
+      </body>
+      </html>
+    `
    };
 
    await transporter.sendMail(mailOptions);
